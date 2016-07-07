@@ -1,30 +1,31 @@
 {
-    "name": "gitbook-plugin-highlight",
-    "description": "Default code highlighter for GitBook",
-    "main": "index.js",
-    "version": "2.0.2",
-    "engines": {
-        "gitbook": ">=2.4.0"
-    },
-    "homepage": "https://github.com/GitbookIO/plugin-highlight",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/GitbookIO/plugin-highlight.git"
-    },
-    "license": "Apache 2",
-    "bugs": {
-        "url": "https://github.com/GitbookIO/plugin-highlight/issues"
-    },
-    "dependencies": {
-        "highlight.js": "9.2.0"
-    },
-    "devDependencies": {
-        "less": "2.5.1",
-        "mocha":"2.4.5",
-        "gitbook-tester":"1.4.0"
-    },
-    "scripts": {
-        "prepublish": "mkdir -p css && lessc ./less/website.less > ./css/website.css; lessc ./less/ebook.less > ./css/ebook.css",
-        "test": "mocha test/"
-    }
+  "name": "gitbook-plugin-highlightt",
+  "description": "Code highlighter with linenum for GitBook",
+  "main": "index.js",
+  "version": "2.0.6",
+  "engines": {
+    "gitbook": ">=2.4.0"
+  },
+  "homepage": "https://github.com/dongweiming/plugin-highlight",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dongweiming/plugin-highlight.git"
+  },
+  "license": "Apache 2",
+  "bugs": {
+    "url": "https://github.com/dongweiming/plugin-highlight/issues"
+  },
+  "dependencies": {
+    "code-highlight-linenums": "^0.2.1",
+    "highlight.js": "9.2.0"
+  },
+  "devDependencies": {
+    "less": "2.5.1",
+    "mocha": "2.4.5",
+    "gitbook-tester": "1.4.0"
+  },
+  "scripts": {
+    "prepublish": "mkdir -p css && lessc ./less/website.less > ./css/website.css; lessc ./less/ebook.less > ./css/ebook.css",
+    "test": "mocha test/"
+  }
 }

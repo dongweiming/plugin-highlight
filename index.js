@@ -1,5 +1,7 @@
 var path = require('path');
 var hljs = require('highlight.js');
+var codeHighlightLinenums = require('code-highlight-linenums');
+
 
 var MAP = {
     'py': 'python',
@@ -17,17 +19,41 @@ function normalize(lang) {
 }
 
 function highlight(lang, code) {
+    var props, start=null;
     if(!lang) return {
         body: code,
         html: false
     };
 
+    if (lang.indexOf(',') > -1) {
+        props = lang.split(',');
+        if (props.length > 1 && props[1] == 'numbered') {
+            lang = props[0];
+            if (props.length === 3) {
+                try {
+                    start = props[2].split('=')[1].split('"')[1];
+                } catch(e) {
+                    start = 0;
+                }
+            } else {
+                start = 0;
+            }
+        }
+    }
+
     // Normalize lang
     lang = normalize(lang);
+    code = code.trim();
 
     try {
-        return hljs.highlight(lang, code).value;
-    } catch(e) { }
+        if (start === null) {
+            return hljs.highlight(lang, code).value;
+        } else {
+            return codeHighlightLinenums(code, {hljs: hljs, lang: lang, start: start});
+        }
+    } catch(e) {
+        console.log(e);
+    }
 
     return {
         body: code,

@@ -15,3 +15,65 @@
         @import "./night.less";
     }
 }
+
+pre, code {
+    .line {
+        @pre-padding: 9px;
+        display: inline-block;
+        position: relative;
+        padding-left: ~"calc(2ch + " @pre-padding * 2 ~")";
+        // fixes empty lines
+        &:after { content: ' '; }
+        &:before {
+            box-sizing: content-box;
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            text-align: right;
+            width: 2ch;
+            content: attr(start); // use the start attribute for the line number
+                                  padding-right: @pre-padding;
+            padding-left: @pre-padding;
+            margin-left: ~"calc(-2ch + " -@pre-padding * 3 ~")";
+            margin-right: @pre-padding;
+        }
+        &:first-child:before {
+            padding-top: @pre-padding;
+            margin-top: -@pre-padding;
+        }
+        &:last-child:before {
+            padding-bottom: @pre-padding;
+            margin-bottom: -@pre-padding;
+        }
+        &.width-3 {
+            padding-left: ~"calc(3ch + " @pre-padding * 2 ~")";
+            &:before {
+                width: 3ch;
+                margin-left: ~"calc(-3ch + " -@pre-padding * 3 ~")";
+            }
+        }
+        &.width-4 {
+            padding-left: ~"calc(4ch + " @pre-padding * 2 ~")";
+            &:before {
+                width: 4ch;
+                margin-left: ~"calc(-4ch + " -@pre-padding * 3 ~")";
+            }
+        }
+
+        &.width-5 {
+            padding-left: ~"calc(5ch + " @pre-padding * 2 ~")";
+            &:before {
+                width: 5ch;
+                margin-left: ~"calc(-5ch + " -@pre-padding * 3 ~")";
+            }
+        }
+        &.width-6 {
+            padding-left: ~"calc(6ch + " @pre-padding * 2 ~")";
+            &:before {
+                width: 6ch;
+                margin-left: ~"calc(-6ch + " -@pre-padding * 3 ~")";
+            }
+        }
+    }
+}
